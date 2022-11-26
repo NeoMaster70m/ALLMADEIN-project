@@ -26,6 +26,7 @@
     height: 210px;
     margin: 50px auto;
     justify-content: center;
+    align-items: center;
 }
 .categories-label {
     display: grid;
@@ -40,7 +41,7 @@
     text-transform: capitalize;
     color: #252525;
     text-align: center;
-    margin-right: 30px;
+    margin: 0 15px;
 }
 label.categories-label button {
     display: block;
@@ -56,4 +57,7 @@ label.categories-label button {
 label.categories-label button:hover {
     background: #7BBE5B;
     transition: 0.5s;
+}
+.marginfix {
+
 }

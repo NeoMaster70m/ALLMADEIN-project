@@ -24,7 +24,6 @@
     height: 150px;
     margin: 0 auto;
     align-items: center;
-    justify-content: space-between;
 }
 .categories-btn {
     width: 180px;
@@ -41,7 +40,7 @@
     color: #FFFFFF;
     text-align: center;
     cursor: pointer;
-    margin-right: 30px;
+    margin: 0 15px;
 }
 .categories-btn:hover {
     background: #4FAEF2;
@@ -51,10 +50,10 @@
     width: 615px;
     height: 50px;
     border: 1px solid #707070;
-    padding-left: 22px;
     float: left;
     background: #FFFFFF;
     border-radius: 50px 0px 0px 50px;
+    margin-left: 15px;
 }
 .search-input button {
     width: 70px;
@@ -67,6 +66,7 @@
     border-radius: 0px 50px 50px 0px;
     border-left: none;
     cursor: pointer;
+    margin-right: 15px;
 }
 .search-input button:hover {
     background: #FFFFFF;
@@ -87,6 +87,7 @@
     letter-spacing: 0.05em;
     color: rgba(0, 0, 0, 0.5);
     vertical-align: middle;
+    padding-left: 22px;
 }
 .place-ad_btn {
     width: 175px;
@@ -103,7 +104,7 @@
     color: #FFFFFF;
     text-align: center;
     cursor: pointer;
-    margin-left: 30px;
+    margin: 0 15px;
 }
 .place-ad_btn:hover {
     background: #7FCC5B;
@@ -117,8 +118,8 @@
     font-size: 24px;
     border: 1px solid #707070;
     border-radius: 100px;
-    margin-left: 30px;
     cursor: pointer;
+    margin: 0 15px;
 }
 .profile-btn:hover {
     background: #FFFFFF;
