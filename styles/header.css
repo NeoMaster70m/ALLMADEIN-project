@@ -24,6 +24,7 @@
     height: 150px;
     margin: 0 auto;
     align-items: center;
+    justify-content: center;
 }
 .categories-btn {
     width: 180px;
@@ -47,7 +48,7 @@
     transition: 0.25s;
 }
 .search-input input {
-    width: 615px;
+    width: 545px;
     height: 50px;
     border: 1px solid #707070;
     float: left;
