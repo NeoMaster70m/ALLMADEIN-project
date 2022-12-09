@@ -47,3 +47,6 @@ table {
 ::-webkit-scrollbar {
 	width: 0;
 }
+ul {
+	list-style: none;
+}

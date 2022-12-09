@@ -78,3 +78,28 @@
     color: #252525;
     text-decoration: none;
 }
+.arrow-up {
+    display: flex;
+    align-items: center;
+    height: 30px;
+    margin: 90px 90px 0 515px;
+}
+.arrow-btn {
+    display: flex;
+    width: 40px;
+    height: 40px;
+    align-items: center;
+    border-radius: 100%;
+    border: none;
+    background: #FFFFFF;
+    color: #252525;
+}
+.arrow-btn i {
+    width: 30px;
+    height: 30px;
+    padding: 7px 0 0 0;
+}
+.arrow-btn:hover {
+    background: #3EC200;
+    color: #FFFFFF;
+}
