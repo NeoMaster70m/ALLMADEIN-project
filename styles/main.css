@@ -22,11 +22,12 @@
 }
 .block-categories {
     display: flex;
-    width: 1110px;
+    width: 935px;
     height: 210px;
     margin: 50px auto;
     justify-content: center;
     align-items: center;
+    gap: 10px;
 }
 .categories-label {
     display: grid;
@@ -41,7 +42,6 @@
     text-transform: capitalize;
     color: #252525;
     text-align: center;
-    margin: 0 15px;
 }
 label.categories-label button {
     display: block;
