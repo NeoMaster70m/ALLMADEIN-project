@@ -3,7 +3,7 @@ const Hover = {
     subMenu: {},
     currentElement: null,
     timeoutOver: null,
-    time: 100,
+    time: 180,
 
     activate: function (menu, subMenu, time) {
         if (typeof menu === "undefined" || typeof subMenu === "undefined") return;

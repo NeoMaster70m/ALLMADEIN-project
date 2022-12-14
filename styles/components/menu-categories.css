@@ -103,10 +103,43 @@
     color: #252525;
     margin: 5px 20px;
 }
-.column div:hover {
-    background: #EEEEEE;
-}
 .menu {
     border-right: 2px solid #EEEEEE;
-    height: 420px;
+    height: 434px;
+}
+.submenu2 {
+    position: relative;
+    display: inline-block;
+}
+.submenu2-content {
+    display: none;
+    position: absolute;
+    width: 570px;
+    height: 480px;
+    background-color: #EEEEEE;
+    border-radius: 0 25px 25px 0;
+    z-index: 1;
+    left: 310px;
+    margin: -63px 0 0 0;
+}
+.submenu-image {
+    padding: 12px 16px;
+    width: 570px;
+    height: 480px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.submenu-image:hover {
+    background-color: #EEEEEE;
+    border-radius: 0 25px 25px 0;
+
+}
+.submenu2:hover .submenu2-content {
+    display: block;
+    background: #EEEEEE;
+}
+.submenu2:hover .submenu-item {
+    background-color: #EEEEEE;
 }
