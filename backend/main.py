@@ -1,6 +1,6 @@
 from fastapi import (FastAPI, BackgroundTasks, UploadFile,
                      File, Form, Depends, HTTPException, status, Request)
-from tortoise.contrib.fastapi import register_tortoise
+from packages.tortoise_contrib_fastapi import register_tortoise
 from models import (User, Business, Product, user_pydantic, user_pydanticIn,
                     product_pydantic, product_pydanticIn, business_pydantic,
                     business_pydanticIn, user_pydanticOut)
@@ -49,6 +49,12 @@ app = FastAPI()
 app.mount("/static", StaticFiles(directory="static"), name="static")
 # authorization configs
 oath2_scheme = OAuth2PasswordBearer(tokenUrl='token')
+# uvicorn.run("main:app", host="127.0.0.1", port=5000, log_level="info")
+
+# returns hello world
+@app.get("/")
+def read_root():
+    return {"Hello": "World"}
 
 
 # password helper functions
