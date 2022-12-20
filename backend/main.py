@@ -4,6 +4,7 @@ from packages.tortoise_contrib_fastapi import register_tortoise
 from models import (User, Business, Product, user_pydantic, user_pydanticIn,
                     product_pydantic, product_pydanticIn, business_pydantic,
                     business_pydanticIn, user_pydanticOut)
+import uvicorn
 
 # signals
 from tortoise.signals import post_save
@@ -44,12 +45,12 @@ from fastapi.responses import HTMLResponse
 
 config_credentials = dict(dotenv_values(".env"))
 app = FastAPI()
+
 # static files
 # pip install aiofiles
 app.mount("/static", StaticFiles(directory="static"), name="static")
 # authorization configs
 oath2_scheme = OAuth2PasswordBearer(tokenUrl='token')
-# uvicorn.run("main:app", host="127.0.0.1", port=5000, log_level="info")
 
 # returns hello world
 @app.get("/")
@@ -93,25 +94,6 @@ async def user_registration(user: user_pydanticIn):
             "data":
                 f"Hello {new_user.username} thanks for choosing our services!"}
 
-
-# template for email verification
-# templates = Jinja2Templates(directory="templates")
-
-# @app.get('/verification',  response_class=HTMLResponse)
-# make sure to import request from fastapi and HTMLResponse
-# async def email_verification(request: Request, token: str):
-#     user = await verify_token(token)
-#     if user and not user.is_verified:
-#         user.is_verified = True
-#         await user.save()
-#         return templates.TemplateResponse("verification.html",
-#                                 {"request": request, "username": user.username}
-#                         )
-#     raise HTTPException(
-#             status_code = status.HTTP_401_UNAUTHORIZED,
-#             detail = "Invalid or expired token",
-#             headers={"WWW-Authenticate": "Bearer"},
-#         )
 
 async def get_current_user(token: str = Depends(oath2_scheme)):
     try:
