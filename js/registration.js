@@ -1,42 +1,30 @@
-// const xhr = new XMLHttpRequest();
-// xhr.open("POST", "");
-// xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-// // const username = document.getElementById('username');
-// // const email = document.getElementById('email');
-// // const password = document.getElementById('password')
-// // let username_value = username.value;
-// // let email_value = email.value;
-// // let password_value = password.value;
-// //
-//
-// const formElement = document.getElementById('registrationForm'); // извлекаем элемент формы
-// formElement.addEventListener('submit', (e) => {
-//     e.preventDefault();
-//     const formData = new FormData(formElement); // создаём объект FormData, передаём в него элемент формы
-//     // теперь можно извлечь данные
-//     const username = formData.get('username');
-//     const email = formData.get('email');
-//     const password = formData.get('password')
-// });
-// let body_string =
-//     '"username": "${username_value}",\n' +
-//     '"email": "${email_value}",\n' +
-//     '"password": "${password_value}"'
-// const body = JSON.stringify({
-//
-// });
-// xhr.onload = () => {
-//     if (xhr.readyState === 4 && xhr.status === 201) {
-//         console.log(JSON.parse(xhr.responseText));
-//     } else {
-//         console.log(`Error: ${xhr.status}`);
-//     }
-// };
-// console.log(body_string);
-function handleFormSubmit(event) {
-    // Просим форму не отправлять данные самостоятельно
+async function handleFormSubmit(event) {
     event.preventDefault()
-    console.log('Отправка!')
+
+    const form = document.querySelector('#registerForm');
+    const usernameInput = form.querySelector('#username');
+    const emailInput = form.querySelector('#email');
+    const passwordInput = form.querySelector('#password');
+
+    const data = {
+        username: usernameInput.value,
+        email: emailInput.value,
+        password: passwordInput.value
+    };
+
+    const options = {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    };
+    console.log(data)
+
+    fetch('http://52.192.85.84/registration', options)
+        .then(response => response.json())
+        .then(data => console.log(data))
+        .catch(error => console.error(error));
 }
-const applicantForm = document.getElementById('registrationForm')
+const applicantForm = document.getElementById('registerForm')
 applicantForm.addEventListener('submit', handleFormSubmit)
