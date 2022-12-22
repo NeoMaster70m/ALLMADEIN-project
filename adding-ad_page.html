@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;500;600;700;800;900;1000&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles/reset.css">
+    <link rel="stylesheet" href="styles/adding-ad.css">
+    <link rel="stylesheet" href="styles/footer.css">
+</head>
+<body>
+<div class="adding-head">
+    <img src="images/logo.jpg" alt="">
+    <button class="profile-btn"><i class="fa-regular fa-user"></i></button>
+</div>
+<form class="adding-form" action="">
+    <a href=""><img src="images/fonts-icons/return-arrow.svg" alt=""></a>
+    <label class="adding-item" for="">
+        <b>Category</b>
+        <select name="" id="">
+            <option value="" disabled selected>Choose Category</option>
+        </select>
+        <select name="" id="">
+            <option value="" disabled selected>Choose Subcategory</option>
+        </select>
+    </label>
+    <label class="adding-item" for="">
+        <b>Product title</b>
+        <input class="add-product_title" type="text">
+    </label>
+    <label class="adding-item" for="">
+        <b>Price</b>
+        <input class="adding-price" type="number" min="0.00" max="10000.00" step="0.01" />
+    </label>
+    <label class="adding-item" for="">
+        <b style="margin-top: 0;">Description</b>
+        <textarea name="" id="" cols="30" rows="10"></textarea>
+    </label>
+    <label class="adding-item" for="">
+        <b>Photo</b>
+        <input type="file">
+    </label>
+    <label class="adding-item" for="">
+        <b>Location</b>
+        <input class="adding-location" type="text">
+    </label>
+    <label class="adding-item" for="">
+        <b>Email</b>
+        <input class="adding-email" type="email">
+    </label>
+    <label class="adding-item" for="">
+        <input class="adding-btn" type="button" value="Place">
+    </label>
+</form>
+<section class="footer">
+    <div class="footer-container">
+        <div class="footer-title">
+            <h1>ALLMADEIN</h1>
+        </div>
+        <div class="footer-links">
+            <a href="">Categories</a>
+            <a href="">Place an ad</a>
+            <a href="">Profile</a>
+            <a href="">About Us</a>
+        </div>
+        <div class="arrow-up">
+            <button class="arrow-btn"><i class="fa-solid fa-arrow-up"></i></button>
+        </div>
+        <div class="footer-contacts">
+            <h2>+7 (000) 000 00 00</h2>
+            <a href="">hi@allmadein.com</a>
+        </div>
+    </div>
+</section>
+</body>
+</html>
