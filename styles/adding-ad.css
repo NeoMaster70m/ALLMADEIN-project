@@ -20,7 +20,7 @@
     display: flex;
     align-items: center;
     margin: 0 auto;
-    gap: 891px;
+    justify-content: space-between;
 }
 .adding-head img {
     width: 169px;
@@ -70,7 +70,7 @@
     font-family: 'Nunito', sans-serif;
     font-style: normal;
     font-weight: 300;
-    font-size: 20px;
+    font-size: 16px;
     line-height: 27px;
     letter-spacing: 0.05em;
     color: rgba(0, 0, 0, 0.5);
@@ -134,7 +134,7 @@
     line-height: 27px;
     letter-spacing: 0.05em;
 }
-.adding-email {
+.adding-phone {
     width: 280px;
     height: 50px;
     border: 1px solid #707070;
@@ -146,6 +146,7 @@
     font-size: 20px;
     line-height: 27px;
     letter-spacing: 0.05em;
+    white-space: nowrap;
 }
 .adding-btn {
     width: 280px;

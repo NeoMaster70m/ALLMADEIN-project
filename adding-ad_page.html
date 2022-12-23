@@ -21,26 +21,34 @@
 </div>
 <form class="adding-form" action="">
     <a href=""><img src="images/fonts-icons/return-arrow.svg" alt=""></a>
-    <label class="adding-item" for="">
+    <label class="adding-item" for="categories">
         <b>Category</b>
-        <select name="" id="">
-            <option value="" disabled selected>Choose Category</option>
+        <select name="categories" id="categories">
+            <option value="0" disabled selected>Choose Category</option>
+            <option value="category1">Clothes</option>
+            <option value="category2">Electronics</option>
+            <option value="category3">Household Appliences</option>
+            <option value="category4">Accomondation</option>
+            <option value="category5">Cars and Supplies</option>
+            <option value="category6">Furniture</option>
+            <option value="category7">Other</option>
         </select>
-        <select name="" id="">
-            <option value="" disabled selected>Choose Subcategory</option>
+        <select name="subcategories" id="subcategories">
+            <option value="0" disabled selected>Choose Subcategory</option>
         </select>
     </label>
     <label class="adding-item" for="">
         <b>Product title</b>
-        <input class="add-product_title" type="text">
+        <input class="add-product_title" type="text" maxlength="40">
     </label>
     <label class="adding-item" for="">
         <b>Price</b>
         <input class="adding-price" type="number" min="0.00" max="10000.00" step="0.01" />
+        <i style="font-size: 26px; margin-left: -20px; color: #3EC200" class="fa-solid fa-dollar-sign"></i>
     </label>
     <label class="adding-item" for="">
         <b style="margin-top: 0;">Description</b>
-        <textarea name="" id="" cols="30" rows="10"></textarea>
+        <textarea name="" id="" cols="30" rows="10" maxlength="500"></textarea>
     </label>
     <label class="adding-item" for="">
         <b>Photo</b>
@@ -51,8 +59,8 @@
         <input class="adding-location" type="text">
     </label>
     <label class="adding-item" for="">
-        <b>Email</b>
-        <input class="adding-email" type="email">
+        <b>Phone Number</b>
+        <input class="adding-phone" type="tel" name="phone" placeholder="+7 (000) 000 00 00" pattern="+[0-9]{1}[0-9]{3}-[0-9]{3}-[0-9]{2}-[0-9]{2}">
     </label>
     <label class="adding-item" for="">
         <input class="adding-btn" type="button" value="Place">
@@ -78,5 +86,6 @@
         </div>
     </div>
 </section>
+<script src="js/ad-select_category.js"></script>
 </body>
 </html>
