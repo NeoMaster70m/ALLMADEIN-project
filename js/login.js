@@ -20,24 +20,11 @@ document.getElementById('login-form').addEventListener('submit', e => {
                 sessionStorage.setItem('token', data.access_token);
                 console.log('Token stored in session storage');
                 console.log(data.access_token);
-            }
-        })
-        .catch((error) => console.error(error));
-
-    // Send POST request to /user/me endpoint
-    fetch('http://52.192.85.84/user/me', {
-        method: 'POST',
-        headers: {
-            Authorization: `Bearer ${sessionStorage.token}`,
-        },
-    })
-        .then((response) => response.json())
-        .then((data) => {
-            if (data.success) {
-                // Set cookie and redirect to profile page
                 document.cookie = 'session=active';
-                window.location.assign("main_page.html");
+                window.location.href = 'profile_page.html';
+
             }
         })
         .catch((error) => console.error(error));
 });
+

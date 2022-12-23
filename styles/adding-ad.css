@@ -162,4 +162,9 @@
     line-height: 27px;
     letter-spacing: 0.05em;
     color: #FEFEFE;
+    cursor: pointer;
+}
+.adding-btn:hover {
+    background: #7FCC5B;
+    transition: 0.5s;
 }

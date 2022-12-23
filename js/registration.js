@@ -23,7 +23,11 @@ async function handleFormSubmit(event) {
 
     fetch('http://52.192.85.84/registration', options)
         .then(response => response.json())
-        .then(data => console.log(data))
+        .then(data => {
+            if (data) {
+                window.location.href = 'login_page.html';
+            }
+        })
         .catch(error => console.error(error));
 }
 const applicantForm = document.getElementById('registerForm')
