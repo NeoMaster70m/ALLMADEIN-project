@@ -40,10 +40,14 @@
 .min, .max {
     width: 100px;
     height: 30px;
-    border: none; 
+    border: none;
+    margin: 0 -3px;
 }
 .min {
     border-right: 1px solid gray;
+}
+.max {
+    border-left: 1px solid grey;
 }
 
 .price-label, .sort-label {

@@ -72,4 +72,8 @@ function updateProductCards(products) {
     const productCard = document.createElement('div');
     productCard.innerHTML = `
       <h3>${product.name}</h3>
-      <p>Price: ${product
+      <p>Price: ${product.price}</p>
+    `;
+    productCardsContainer.appendChild(productCard);
+  });
+}
