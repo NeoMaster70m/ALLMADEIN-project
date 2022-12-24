@@ -1,6 +1,8 @@
 from fastapi import (FastAPI, BackgroundTasks, UploadFile,
                      File, Form, Depends, HTTPException, status, Request)
+from fastapi.middleware.cors import CORSMiddleware
 from packages.tortoise_contrib_fastapi import register_tortoise
+from pydantic.utils import GetterDict
 from models import (User, Business, Product, user_pydantic, user_pydanticIn,
                     product_pydantic, product_pydanticIn, business_pydantic,
                     business_pydanticIn, user_pydanticOut)
@@ -46,11 +48,20 @@ from fastapi.responses import HTMLResponse
 config_credentials = dict(dotenv_values(".env"))
 app = FastAPI()
 
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins = ["*"],
+    allow_methods = ["*"],
+    allow_headers = ["*"],
+)
+
 # static files
 # pip install aiofiles
 app.mount("/static", StaticFiles(directory="static"), name="static")
 # authorization configs
 oath2_scheme = OAuth2PasswordBearer(tokenUrl='token')
+# uvicorn.run("main:app", host="127.0.0.1", port=5000, log_level="info")
+
 
 # returns hello world
 @app.get("/")
@@ -112,10 +123,9 @@ async def get_current_user(token: str = Depends(oath2_scheme)):
 
 @app.post('/user/me')
 async def user_login(user: user_pydantic = Depends(get_current_user)):
-
     business = await Business.get(owner=user)
     logo = business.logo
-    logo = "localhost:8000/static/images/"+logo
+    logo = "52.192.85.84/static/images/"+logo
 
     return {"status": "ok",
             "data":
@@ -129,23 +139,45 @@ async def user_login(user: user_pydantic = Depends(get_current_user)):
             }
 
 
+def get_the_category(product):
+    # set the main_category field based on the category field
+    if product.category in ["Women’s Clothing", "Men’s Clothing", "Children’s Clothing"]:
+        return "Clothes"
+    elif product.category in ["Phones and tablets", "Photo and video cameras", "computers", "TV, audio systems"]:
+        return "Electronics"
+    elif product.category in ["Refrigerators", "Stoves and ovens", "Washing machines", "Climatic equipment", "Other appliances"]:
+        return "Household Appliances"
+    elif product.category in ["Apartment for sale", "Houses for sale", "Apartment rent", "Houses rent"]:
+        return "Accommodation"
+    elif product.category in ["Cars", "Motorcycles", "Buses and Trucks", "Special machinery", "Trailers", "Spare parts and wheels", "Accessories and equipment", "Car care products"]:
+        return "Cars and supplies"
+    elif product.category in ["Beds and mattresses", "Tables and Chairs", "Sofas and armchairs", "Kitchen sets", "Storing"]:
+        return "Furniture"
+    elif product.category in ["Services", "Sports and recreation", "Books and hobbies", "Pets", "Job", "Other ungrouped"]:
+        return "Other"
+    else:
+        return "Error"
+
+
 @app.post("/products")
 async def add_new_product(product: product_pydanticIn,
                           user: user_pydantic = Depends(get_current_user)):
+    main_category = get_the_category(product)
+    if main_category == "Error":
+        raise HTTPException(status_code=404, detail="Category not found")
     product = product.dict(exclude_unset=True)
     # to avoid division by zero error
     if product['original_price'] > 0:
         product["percentage_discount"] = (
             (product["original_price"] - product['new_price']) / product['original_price']) * 100
-
-    product_obj = await Product.create(**product, business=user)
+    product_obj = await Product.create(**product, business=user, main_category=main_category)
     product_obj = await product_pydantic.from_tortoise_orm(product_obj)
     return {"status": "ok", "data": product_obj}
 
 
-@app.get("/products")
+@app.get("/products/")
 async def get_products():
-    response = await product_pydantic.from_tortoise_orm(Product.all())
+    response = [await product_pydantic.from_tortoise_orm(product) for product in await Product.all()]
     return {"status": "ok", "data": response}
 
 
@@ -176,18 +208,18 @@ async def specific_product(id: int):
 
 @app.delete("/products/{id}")
 async def delete_product(id: int, user: user_pydantic = Depends(get_current_user)):
-    product = await Product.get(id=id)
-    business = await product.business
+    product = await Product.get(id = id)
+    business =  await product.business
     owner = await business.owner
     if user == owner:
-        product.delete()
+        await Product.filter(id=id).delete()
+        return {"status" : "ok"}
     else:
         raise HTTPException(
-            status_code=status.HTTP_401_UNAUTHORIZED,
-            detail="Not authenticated to perform this action",
+            status_code = status.HTTP_401_UNAUTHORIZED, 
+            detail = "Not authenticated to perform this action",
             headers={"WWW-Authenticate": "Bearer"},
         )
-    return {"status": "ok"}
 
 
 # image upload
@@ -228,7 +260,7 @@ async def create_upload_file(file: UploadFile = File(...),
             detail="Not authenticated to perform this action",
             headers={"WWW-Authenticate": "Bearer"},
         )
-    file_url = "localhost:8000" + generated_name[1:]
+    file_url = "52.192.85.84" + generated_name[1:]
     return {"status": "ok", "filename": file_url}
 
 
@@ -273,7 +305,7 @@ async def create_upload_file(id: int, file: UploadFile = File(...),
             headers={"WWW-Authenticate": "Bearer"},
         )
 
-    file_url = "localhost:8000" + generated_name[1:]
+    file_url = "52.192.85.84" + generated_name[1:]
     return {"status": "ok", "filename": file_url}
 
 
