@@ -317,7 +317,7 @@ async def create_upload_file(id: int, file: UploadFile = File(...),
             headers={"WWW-Authenticate": "Bearer"},
         )
 
-    file_url = "http://127.0.0.1:8000/static/images" + generated_name[1:]
+    file_url = "http://127.0.0.1:8000" + generated_name[1:]
     return {"status": "ok", "filename": file_url}
 
 
