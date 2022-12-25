@@ -1,6 +1,6 @@
 const subcategories = {
-    category1: ["Women's Clothing", "Men's Clothing", "Children's Clothing"],
-    category2: ["Phones and tablets", "Photo and video cameras", "Сomputers", "TV, audio systems"],
+    category1: ["Women’s Clothing", "Men’s Clothing", "Children’s Clothing"],
+    category2: ["Phones and tablets", "Photo and video cameras", "computers", "TV, audio systems"],
     category3: ["Refrigerators", "Stoves and ovens", "Washing machines", "Climatic equipment", "Other appliances"],
     category4: ["Apartment for sale", "Houses for sale", "Apartment rent", "Houses rent"],
     category5: ["Cars", "Motorcycles", "Buses and Trucks", "Special machinery", "Trailers", "Spare parts and wheels", "Accessories and equipment", "Car care products"],
@@ -36,47 +36,56 @@ const subselect = document.getElementById('subcategories');
 
 select.addEventListener('change', () => {
     const mainCategoryToSend = select.options[select.selectedIndex].text
-    console.log(mainCategoryToSend);
 }); 
 
 subselect.addEventListener('change', () => {
     const subCategoryToSend = subselect.options[subselect.selectedIndex].text
-    console.log(subCategoryToSend);
+    const image = document.getElementById('image').files[0]
 }); 
 
-const form = document.getElementById('product-form');
+async function sendForm(){
+    const subCategoryToSend = subselect.options[subselect.selectedIndex].text
+    const nameToSend = document.getElementById('name-id').value
+    const priceToSend = document.getElementById('price').value
+    const descriptionToSend = document.getElementById('description').value
+    const locationToSend = document.getElementById('location').value
 
-form.addEventListener('submit', (event) => {
-  event.preventDefault();
+    const data = {
+        name: nameToSend,
+        category: subCategoryToSend,
+        description: descriptionToSend,
+        location: locationToSend,
+        original_price: priceToSend,
+        new_price: priceToSend
+    };
 
-  const name = document.getElementById('title').value;
-  const category = mainCategoryToSend
-  const originalPrice = document.getElementById('price').value;
-  const newPrice = document.getElementById('price').value;
-  const offerExpirationDate = document.getElementById('offer-expiration-date').value;
-  const file = document.getElementById('file').files[0];
+    const options = {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${sessionStorage.token}`,
+            
+        },
+        body: JSON.stringify(data)
+    };
+    console.log(data)
 
-  const data = {
-    name: name,
-    category: category,
-    original_price: originalPrice,
-    new_price: newPrice,
-    offer_expiration_date: offerExpirationDate
-  };
+    fetch('http://127.0.0.1:8000/products', options)
+        .then(response => response.json())
+        .then(data => {const sendingid = data.data.id
+                        console.log(sendingid);
+                        formData = new FormData();
+                        formData.append('image', file);
+                        fetch(`http://127.0.0.1:8000/uploadfile/product/${sendingid}`, {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'multipart/form-data',
+                                Authorization: `Bearer ${sessionStorage.token}`,
+                            },
+                            body: formData
+                        })
+        })  
+        .catch(error => console.error(error));
 
-  const formData = new FormData();
-  formData.append('product', JSON.stringify(data));
-  formData.append('file', file);
+}
 
-  fetch('http://127.0.0.1:8000/uploadfile/product/id', {
-    method: 'POST',
-    body: formData
-  })
-    .then((response) => response.json())
-    .then((data) => {
-      console.log(data);
-    })
-    .catch((error) => {
-  console.error(error);
-});
-});
