@@ -52,7 +52,13 @@
     </label>
     <label class="adding-item" for="">
         <b>Photo</b>
-        <input type="file" name="photo" accept="image/*">
+        <div class="uploader">
+            +
+            <input type="file" style="display: none;" />
+        </div>
+        <div class="preview-container">
+            <img class="preview" src="" alt="Preview" />
+        </div>
     </label>
     <label class="adding-item" for="">
         <b>Location</b>
@@ -82,6 +88,7 @@
         </div>
     </div>
 </section>
+<script src="js/photo-upload.js"></script>
 <script src="js/ad-select_category.js"></script>
 <script src="js/adding-ad.js"></script>
 </body>
