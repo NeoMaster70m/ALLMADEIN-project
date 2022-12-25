@@ -17,6 +17,14 @@
     height: 200px;
 }
 
+.product-picture img {
+  width: 100%;
+  height: auto;
+  border-top-left-radius: 25px;
+  border-top-right-radius: 25px;
+}
+
+
   .product-info {
     width: 240px;
     height: 80px;
