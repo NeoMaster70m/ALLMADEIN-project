@@ -35,7 +35,6 @@ class Product(Model):
     # 12 signinficant digits, 2 of the significant digits are decimals.
     id = fields.IntField(pk=True, index=True)
     name = fields.CharField(max_length=100, null=False, index=True)
-    # description = fields.CharField(max_length=800, null=False, index=True)
     main_category = fields.CharField(
         max_length=30, index=True, null=True,
         # specify the allowed values for the category field using Literal
@@ -63,10 +62,12 @@ class Product(Model):
             "Services", "Sports and recreation", "Books and hobbies", "Pets", "Job", "Other ungrouped"
         ]
     )
+    description = fields.CharField(max_length=800, null=False)
+    location = fields.CharField(max_length=100, null=False)
     original_price = fields.DecimalField(max_digits=12, decimal_places=2)
     new_price = fields.DecimalField(max_digits=12, decimal_places=2)
     percentage_discount = fields.IntField()
-    offer_expiration_date = fields.DateField(default=datetime.utcnow)
+    # offer_expiration_date = fields.DateField(default=datetime.utcnow)
     product_image = fields.CharField(
         max_length=200, null=False, default="http://127.0.0.1:8000/static/images/productDefault.jpg")
     date_published = fields.DatetimeField(default=datetime.utcnow)

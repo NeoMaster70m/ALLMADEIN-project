@@ -8,6 +8,7 @@ const subcategories = {
     category7: ["Services", "Sports and recreation", "Books and hobbies", "Pets", "Job", "Other ungrouped"],
 };
 const categoriesDropdown = document.getElementById("categories");
+
 categoriesDropdown.addEventListener("change", function() {
     // Get the value of the selected option
     const category = this.value;
@@ -28,4 +29,54 @@ categoriesDropdown.addEventListener("change", function() {
         newOption.text = option;
         subcategoriesDropdown.add(newOption);
     });
+});
+
+const select = document.getElementById('categories');
+const subselect = document.getElementById('subcategories');
+
+select.addEventListener('change', () => {
+    const mainCategoryToSend = select.options[select.selectedIndex].text
+    console.log(mainCategoryToSend);
+}); 
+
+subselect.addEventListener('change', () => {
+    const subCategoryToSend = subselect.options[subselect.selectedIndex].text
+    console.log(subCategoryToSend);
+}); 
+
+const form = document.getElementById('product-form');
+
+form.addEventListener('submit', (event) => {
+  event.preventDefault();
+
+  const name = document.getElementById('title').value;
+  const category = mainCategoryToSend
+  const originalPrice = document.getElementById('price').value;
+  const newPrice = document.getElementById('price').value;
+  const offerExpirationDate = document.getElementById('offer-expiration-date').value;
+  const file = document.getElementById('file').files[0];
+
+  const data = {
+    name: name,
+    category: category,
+    original_price: originalPrice,
+    new_price: newPrice,
+    offer_expiration_date: offerExpirationDate
+  };
+
+  const formData = new FormData();
+  formData.append('product', JSON.stringify(data));
+  formData.append('file', file);
+
+  fetch('http://127.0.0.1:8000/uploadfile/product/id', {
+    method: 'POST',
+    body: formData
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(data);
+    })
+    .catch((error) => {
+  console.error(error);
+});
 });
