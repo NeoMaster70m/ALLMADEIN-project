@@ -5,6 +5,12 @@ async function handleFormSubmit(event) {
     const usernameInput = form.querySelector('#username');
     const emailInput = form.querySelector('#email');
     const passwordInput = form.querySelector('#password');
+    const passwordRepeatInput = form.querySelector('#password-repeat');
+
+        if (passwordInput.value !== passwordRepeatInput.value) {
+        alert("Passwords do not match!");
+        return;
+        }
 
     const data = {
         username: usernameInput.value,
