@@ -1,5 +1,4 @@
-// Get the modal
-let modal = document.getElementById("modal");
+var modal = document.getElementById("modal");
 
 // Get the button that opens the modal
 let btn = document.getElementById("openModalButton");
@@ -7,13 +6,19 @@ let btn = document.getElementById("openModalButton");
 // Get the <span> element that closes the modal
 let span = document.getElementsByClassName("close-button")[0];
 
-// When the user clicks the button, open the modal
+// Get the fake submit button
+let SubmitButton = document.getElementById("SubmitButton");
+
 btn.onclick = function() {
     modal.style.display = "block";
 }
 
-// When the user clicks on <span> (x), close the modal
+
 span.onclick = function() {
+    modal.style.display = "none";
+}
+
+SubmitButton.onclick = function() {
     modal.style.display = "none";
 }
 
