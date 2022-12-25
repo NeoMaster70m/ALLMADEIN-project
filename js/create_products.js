@@ -11,6 +11,7 @@ mainmenuItems.forEach(item => {
     .then(data => {
     console.log(data)
     const container = document.getElementById('card-container');
+    container.innerHTML = '';
 
     // Check if data.data is an array before iterating over it
     if (Array.isArray(data.data)) {
@@ -61,6 +62,7 @@ submenuItems.forEach(item => {
     .then(data => {
     console.log(data)
     const container = document.getElementById('card-container');
+    container.innerHTML = '';
 
     // Check if data.data is an array before iterating over it
     if (Array.isArray(data.data)) {
