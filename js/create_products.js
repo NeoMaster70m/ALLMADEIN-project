@@ -23,21 +23,32 @@ submenuItems.forEach(item => {
         const productCard = document.createElement('div');
         productCard.classList.add('product-card');
 
-        const nameElement = document.createElement('p');
-        nameElement.textContent = name;
-        productCard.appendChild(nameElement);
-
-        const priceElement = document.createElement('p');
-        priceElement.textContent = newPrice;
-        productCard.appendChild(priceElement);
+        const productPicture = document.createElement('div');
+        productPicture.classList.add('product-picture');
 
         const imageElement = document.createElement('img');
         imageElement.src = productImage;
-        productCard.appendChild(imageElement);
+        productPicture.appendChild(imageElement);
 
+        const productInfo = document.createElement('div');
+        productInfo.classList.add('product-info');
+
+        const priceElement = document.createElement('h6');
+        priceElement.classList.add('price');
+        priceElement.textContent = newPrice;
+        productInfo.appendChild(priceElement);
+
+        const nameElement = document.createElement('p');
+        nameElement.classList.add('title');
+        nameElement.textContent = name;
+        productInfo.appendChild(nameElement);
+
+        productCard.appendChild(productPicture);
+        productCard.appendChild(productInfo);
         container.appendChild(productCard);
       });
     }
   });
   });
 });
+
