@@ -1,10 +1,11 @@
-const mainmenuItems = document.querySelectorAll('.dropdown-item');
-const submenuItems = document.querySelectorAll('.column_container');
+const urlParams = new URLSearchParams(window.location.search);
+const category = urlParams.get('category');
+const className = urlParams.get('class');
+document.getElementById("category_name").innerHTML = category;
+console.log(category); // Outputs "123"
+console.log(className); // Outputs the class of the div container
 
-mainmenuItems.forEach(item => {
-  item.addEventListener('click', event => {
-    const category = event.target.textContent;
-    document.getElementById("category_name").innerHTML = category;
+if (className == '.dropdown-item') {
     const url = `http://127.0.0.1:8000/products/maincategory?main_category=${category}`;
     console.log(url);
     fetch(url, { method: 'GET' })
@@ -50,13 +51,8 @@ mainmenuItems.forEach(item => {
       });
     }
   });
-  });
-});
-
-submenuItems.forEach(item => {
-  item.addEventListener('click', event => {
-    const category = event.target.textContent;
-    document.getElementById("category_name").innerHTML = category;
+}
+else if (className == '.column_container') {
     const url = `http://127.0.0.1:8000/products/subcategory?category=${category}`;
     console.log(url);
     fetch(url, { method: 'GET' })
@@ -102,5 +98,7 @@ submenuItems.forEach(item => {
       });
     }
   });
-  });
-});
+}
+else{
+    throw 'no classname provided!'
+}
