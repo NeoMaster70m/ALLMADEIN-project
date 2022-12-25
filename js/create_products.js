@@ -1,5 +1,5 @@
 const mainmenuItems = document.querySelectorAll('.dropdown-item');
-const submenuItems = document.querySelectorAll('.submenu-item');
+const submenuItems = document.querySelectorAll('.column_container');
 
 mainmenuItems.forEach(item => {
   item.addEventListener('click', event => {
