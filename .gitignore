@@ -1,3 +1,4 @@
 backend/.env
-database.sqlite3-shm
-database.sqlite3-wal
+backend/database.sqlite3-shm
+backend/database.sqlite3-wal
+backend/__pycache__
