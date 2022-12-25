@@ -21,7 +21,7 @@ async function handleFormSubmit(event) {
     };
     console.log(data)
 
-    fetch('http://52.192.85.84/registration', options)
+    fetch('http://127.0.0.1:8000/registration', options)
         .then(response => response.json())
         .then(data => {
             if (data) {

@@ -7,7 +7,7 @@ document.getElementById('login-form').addEventListener('submit', e => {
     const body = `username=${username}&password=${password}&submit=Login`;
 
     // Send POST request to /token/ endpoint
-    fetch('http://52.192.85.84/token/', {
+    fetch('http://127.0.0.1:8000/token', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded',

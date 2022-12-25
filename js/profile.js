@@ -1,5 +1,5 @@
 // Make an HTTP request to the server to retrieve the JSON file
-fetch('http://52.192.85.84/user/me', {
+fetch('http://127.0.0.1:8000/user/me', {
         method: 'POST',
         headers: {
                 Authorization: `Bearer ${sessionStorage.token}`,

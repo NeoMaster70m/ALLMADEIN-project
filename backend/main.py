@@ -125,7 +125,7 @@ async def get_current_user(token: str = Depends(oath2_scheme)):
 async def user_login(user: user_pydantic = Depends(get_current_user)):
     business = await Business.get(owner=user)
     logo = business.logo
-    logo = "52.192.85.84/static/images/"+logo
+    logo = "http://127.0.0.1:8000/static/images"+logo
 
     return {"status": "ok",
             "data":
@@ -175,9 +175,21 @@ async def add_new_product(product: product_pydanticIn,
     return {"status": "ok", "data": product_obj}
 
 
-@app.get("/products/")
-async def get_products():
+@app.get("/products/all")
+async def get_all_products():
     response = [await product_pydantic.from_tortoise_orm(product) for product in await Product.all()]
+    return {"status": "ok", "data": response}
+
+
+@app.get("/products/maincategory")
+async def get_all_by_maincategory(main_category: str):
+    response = [await product_pydantic.from_tortoise_orm(product) for product in await Product.filter(main_category=main_category)]
+    return {"status": "ok", "data": response}
+
+
+@app.get("/products/subcategory")
+async def get_all_by_subcategory(category: str):
+    response = [await product_pydantic.from_tortoise_orm(product) for product in await Product.filter(category=category)]
     return {"status": "ok", "data": response}
 
 
@@ -230,7 +242,7 @@ async def create_upload_file(file: UploadFile = File(...),
     filename = file.filename
     extension = filename.split(".")[1]
     if extension not in ["jpg", "png"]:
-        return {"status": "error", "detail": "file extension not allowed"}
+        return {"status": "error", "detail": "file extension not allowed, only jpg and png is allowed"}
 
     token_name = secrets.token_hex(10)+"."+extension
     generated_name = FILEPATH + token_name
@@ -260,7 +272,7 @@ async def create_upload_file(file: UploadFile = File(...),
             detail="Not authenticated to perform this action",
             headers={"WWW-Authenticate": "Bearer"},
         )
-    file_url = "52.192.85.84" + generated_name[1:]
+    file_url = "http://127.0.0.1:8000/static/images" + generated_name[1:]
     return {"status": "ok", "filename": file_url}
 
 
@@ -295,7 +307,7 @@ async def create_upload_file(id: int, file: UploadFile = File(...),
 
     # check if the user making the request is authenticated
     if owner == user:
-        product.product_image = token_name
+        product.product_image = "http://127.0.0.1:8000/static/images/" + token_name
         await product.save()
 
     else:
@@ -305,7 +317,7 @@ async def create_upload_file(id: int, file: UploadFile = File(...),
             headers={"WWW-Authenticate": "Bearer"},
         )
 
-    file_url = "52.192.85.84" + generated_name[1:]
+    file_url = "http://127.0.0.1:8000/static/images" + generated_name[1:]
     return {"status": "ok", "filename": file_url}
 
 
