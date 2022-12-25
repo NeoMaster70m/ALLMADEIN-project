@@ -35,6 +35,7 @@ class Product(Model):
     # 12 signinficant digits, 2 of the significant digits are decimals.
     id = fields.IntField(pk=True, index=True)
     name = fields.CharField(max_length=100, null=False, index=True)
+    # description = fields.CharField(max_length=800, null=False, index=True)
     main_category = fields.CharField(
         max_length=30, index=True, null=True,
         # specify the allowed values for the category field using Literal
