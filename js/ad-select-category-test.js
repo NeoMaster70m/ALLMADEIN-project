@@ -30,17 +30,17 @@ categoriesDropdown.addEventListener("change", function() {
         subcategoriesDropdown.add(newOption);
     });
 });
-
+let file = null;
 const select = document.getElementById('categories');
 const subselect = document.getElementById('subcategories');
-
 // Add an event listener to the file input element that sets the file variable to the selected file
-let file;
 const fileInputElement = document.getElementById('image');
+
 fileInputElement.addEventListener('change', () => {
     file = fileInputElement.files[0];
+    console.log(file);
 });
-console.log(file);
+
 
 select.addEventListener('change', () => {
     // Set the mainCategoryToSend variable to the selected option
@@ -53,6 +53,12 @@ subselect.addEventListener('change', () => {
 }); 
 
 async function sendForm(){
+
+    if (!file) {
+        console.error("No file selected");
+        return;
+    }
+
     const subCategoryToSend = subselect.options[subselect.selectedIndex].text
     const nameToSend = document.getElementById('name-id').value
     const priceToSend = document.getElementById('price').value
@@ -88,7 +94,10 @@ async function sendForm(){
         console.log(productId);
         // Create a FormData object to send the image file
         formData = new FormData();
+        console.log(file);
         formData.append('image', file);
+        
+        console.log(formData);
     
         // Make the second request to attach the image to the product
         await fetch(`http://127.0.0.1:8000/uploadfile/product/${productId}`, {
