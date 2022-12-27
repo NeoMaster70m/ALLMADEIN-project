@@ -75,7 +75,7 @@ async function sendForm(){
         .then(data => {const sendingid = data.data.id
                         console.log(sendingid);
                         formData = new FormData();
-                        formData.append('image', file);
+                        formData.append('file', file);
                         fetch(`http://127.0.0.1:8000/uploadfile/product/${sendingid}`, {
                             method: 'POST',
                             headers: {
