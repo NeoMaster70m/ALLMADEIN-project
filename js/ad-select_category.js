@@ -43,6 +43,7 @@ subselect.addEventListener('change', () => {
     const image = document.getElementById('image').files[0]
 }); 
 
+let file;
 async function sendForm(){
     const subCategoryToSend = subselect.options[subselect.selectedIndex].text
     const nameToSend = document.getElementById('name-id').value
