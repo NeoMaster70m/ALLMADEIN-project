@@ -6,7 +6,7 @@ from pydantic.utils import GetterDict
 from models import (User, Business, Product, user_pydantic, user_pydanticIn,
                     product_pydantic, product_pydanticIn, business_pydantic,
                     business_pydanticIn, user_pydanticOut)
-import uvicorn
+from typing import Optional
 
 # signals
 from tortoise.signals import post_save
@@ -319,6 +319,11 @@ async def create_upload_file(id: int, file: UploadFile = File(...),
 
     file_url = "http://127.0.0.1:8000" + generated_name[1:]
     return {"status": "ok", "filename": file_url}
+
+@app.get("/search")
+async def search_items(keyword: str):
+    response = [await product_pydantic.from_tortoise_orm(product) for product in await Product.filter(name__icontains = keyword)]
+    return {"status": "ok", "data": response}
 
 
 register_tortoise(

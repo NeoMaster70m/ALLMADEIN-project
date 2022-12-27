@@ -24,3 +24,8 @@ submenuItems.forEach(item => {
     window.location.href = `category-page.html?category=${category}&class=${className}`;
     })
   })
+
+function search() {
+    const keyword = document.getElementById('search').value
+    window.location.href = `category-page.html?keyword=${keyword}`;
+}

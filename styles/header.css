@@ -26,7 +26,7 @@
     align-items: center;
     justify-content: center;
 }
-.search-input input {
+.search-input {
     width: 545px;
     height: 50px;
     border: 1px solid #707070;
@@ -42,7 +42,7 @@
     letter-spacing: 0.05em;
     padding-left: 22px;
 }
-.search-input button {
+.search-btn {
     width: 70px;
     height: 50px;
     float: left;
@@ -55,17 +55,17 @@
     cursor: pointer;
     margin-right: 15px;
 }
-.search-input button:hover {
+.search-btn :hover {
     background: #FFFFFF;
     color: #707070;
     transition: 0.25s;
 }
-.search-input::after {
+/* .search-input::after {
     content: "";
     clear: both;
     display: table;
-}
-.search-input input::placeholder {
+} */
+.search-input ::placeholder {
     font-family: 'Nunito', sans-serif;
     font-style: normal;
     font-weight: 300;
