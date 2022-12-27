@@ -104,7 +104,7 @@ async function sendForm(){
         await fetch(`http://127.0.0.1:8000/uploadfile/product/${productId}`, {
             method: 'POST',
             headers: {
-                'Content-Type': 'multipart/form-data',
+                // 'Content-Type': 'multipart/form-data', THIS LINE OF CODE IS CURSED, NEVER UNCOMMENT IT OR EVERYTHING WILL BREAK AND SUFFER
                 Authorization: `Bearer ${sessionStorage.token}`,
             },
             body: formData
