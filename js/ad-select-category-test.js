@@ -1,3 +1,4 @@
+let file = null;
 const subcategories = {
     category1: ["Women’s Clothing", "Men’s Clothing", "Children’s Clothing"],
     category2: ["Phones and tablets", "Photo and video cameras", "computers", "TV, audio systems"],
@@ -30,7 +31,7 @@ categoriesDropdown.addEventListener("change", function() {
         subcategoriesDropdown.add(newOption);
     });
 });
-let file = null;
+
 const select = document.getElementById('categories');
 const subselect = document.getElementById('subcategories');
 // Add an event listener to the file input element that sets the file variable to the selected file
@@ -95,7 +96,7 @@ async function sendForm(){
         // Create a FormData object to send the image file
         formData = new FormData();
         console.log(file);
-        formData.append('image', file);
+        formData.append('file', file);
         
         console.log(formData);
     
