@@ -94,18 +94,6 @@ async def create_business(
         # await send_email([instance.email], instance)
 
 
-@app.post('/registration')
-async def user_registration(user: user_pydanticIn):
-    user_info = user.dict(exclude_unset=True)
-    user_info['password'] = get_password_hash(user_info['password'])
-    user_obj = await User.create(**user_info)
-    new_user = await user_pydantic.from_tortoise_orm(user_obj)
-
-    return {"status": "ok",
-            "data":
-                f"Hello {new_user.username} thanks for choosing our services!"}
-
-
 async def get_current_user(token: str = Depends(oath2_scheme)):
     try:
         payload = jwt.decode(
@@ -121,6 +109,18 @@ async def get_current_user(token: str = Depends(oath2_scheme)):
     return await user
 
 
+@app.post('/registration')
+async def user_registration(user: user_pydanticIn):
+    user_info = user.dict(exclude_unset=True)
+    user_info['password'] = get_password_hash(user_info['password'])
+    user_obj = await User.create(**user_info)
+    new_user = await user_pydantic.from_tortoise_orm(user_obj)
+
+    return {"status": "ok",
+            "data":
+                f"Hello {new_user.username} thanks for choosing our services!"}
+
+
 @app.post('/user/me')
 async def user_login(user: user_pydantic = Depends(get_current_user)):
     business = await Business.get(owner=user)
@@ -130,6 +130,7 @@ async def user_login(user: user_pydantic = Depends(get_current_user)):
     return {"status": "ok",
             "data":
                 {
+                    "id": user.id,
                     "username": user.username,
                     "email": user.email,
                     "verified": user.is_verified,
@@ -323,6 +324,11 @@ async def create_upload_file(id: int, file: UploadFile = File(...),
 @app.get("/search")
 async def search_items(keyword: str):
     response = [await product_pydantic.from_tortoise_orm(product) for product in await Product.filter(name__icontains = keyword)]
+    return {"status": "ok", "data": response}
+
+@app.get("/user/products/{user_id}")
+async def users_items(user_id: int):
+    response = [await product_pydantic.from_tortoise_orm(product) for product in await Product.filter(business_id = user_id)]
     return {"status": "ok", "data": response}
 
 
