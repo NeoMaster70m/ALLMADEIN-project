@@ -13,7 +13,6 @@ data.data.forEach(product => {
     const newPrice = product.new_price;
     const productImage = product.product_image;
     const productId = product.id;
-    console.log(productId)
 
     const productCard = document.createElement('div');
     productCard.classList.add('product-card');
@@ -36,7 +35,7 @@ data.data.forEach(product => {
 
     const priceElement = document.createElement('h6');
     priceElement.classList.add('price');
-    priceElement.textContent = newPrice;
+    priceElement.textContent = '$' + newPrice;
     productInfo.appendChild(priceElement);
 
     const nameElement = document.createElement('p');

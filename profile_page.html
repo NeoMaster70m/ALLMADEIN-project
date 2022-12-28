@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="styles/main.css">
     <link rel="stylesheet" href="styles/footer.css">
     <link rel="stylesheet" href="styles/profile.css">
+    <link rel="stylesheet" href="styles/components/card.css">
     <link rel="stylesheet" href="styles/components/menu-categories.css">
 </head>
 <body>
@@ -343,23 +344,35 @@
         </div>
     </div>
 </section>
-<div class="profile">
-    <div class="label-container">
-        <h6 class="label">Name:</h6>
-        <h6 class="label">Email:</h6>
-<!--        <h6 class="label">Phone number:</h6>-->
+<section>
+    <div class="profile">
+        <div class="label-container">
+            <h6 class="label">Name:</h6>
+            <h6 class="label">Email:</h6>
+    <!--        <h6 class="label">Phone number:</h6>-->
+        </div>
+        <div class="value-container">
+            <p class="label" id="username"></p>
+            <p class="label" id="email"></p>
+    <!--        <p class="label">+7 (911) 228 14 88</p>-->
+        </div>
+    <!--    <button class="edit-btn">-->
+    <!--        <img src="images/fonts-icons/edit-btn.svg" width="50px" height="50px">-->
+    <!--    </button>-->
     </div>
-    <div class="value-container">
-        <p class="label" id="username"></p>
-        <p class="label" id="email"></p>
-<!--        <p class="label">+7 (911) 228 14 88</p>-->
+</section>
+<section class="all-ads" id="all-ads">
+    <h1>ALL ADS</h1>
+    <div class="card-container" id="card-container">
+        <!-- <div class="product-card">
+            <div class="product-picture">
+            </div>
+            <div class="product-info">
+              <h6 class="price">$49.99</h6>
+              <p class="title">Product Title</p>
+            </div>
+        </div> -->
     </div>
-<!--    <button class="edit-btn">-->
-<!--        <img src="images/fonts-icons/edit-btn.svg" width="50px" height="50px">-->
-<!--    </button>-->
-</div>
-<section class="my-ads">
-    <h1>My Ads</h1>
 </section>
 <section class="footer">
     <div class="footer-container">
