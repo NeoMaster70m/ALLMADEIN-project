@@ -22,12 +22,12 @@
 }
 .block-categories {
     display: flex;
-    width: 935px;
+    width: 1110px;
     height: 210px;
     margin: 50px auto;
     justify-content: center;
     align-items: center;
-    gap: 15px;
+    gap: 25px;
 }
 .categories-label {
     display: grid;
