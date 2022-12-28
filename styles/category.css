@@ -42,6 +42,7 @@
     height: 30px;
     border: none;
     margin: 0 -3px;
+    outline: none;
 }
 .min {
     border-right: 1px solid gray;

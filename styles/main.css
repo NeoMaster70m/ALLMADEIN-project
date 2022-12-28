@@ -57,6 +57,7 @@ label.categories-label button {
 label.categories-label button:hover {
     background: #7BBE5B;
     transition: 0.5s;
+    transform: scale(2);
 }
 .all-ads {
     width: 1110px;
