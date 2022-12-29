@@ -11,11 +11,14 @@ fetch(`http://127.0.0.1:8000/products/${productId}`, {
   const category = data.data.product_details.category
   // Set the text content of the elements
   document.getElementById('user-photo').src = data.data.business_details.logo; 
+  document.getElementById('user-photo-popup').src = data.data.business_details.logo; 
   document.getElementById('product-title').textContent = data.data.product_details.name;
+  document.getElementById('product-title-popup').textContent = data.data.product_details.name;
   document.getElementById('product-location').textContent = data.data.product_details.location;
   document.getElementById('product-description').textContent = data.data.product_details.description;
   document.getElementById('product-price').textContent = '$' + data.data.product_details.original_price;
   document.getElementById('seller-name').textContent = data.data.business_details.name;
+  document.getElementById('seller-name-popup').textContent = data.data.business_details.name;
   document.getElementById('seller-email').textContent = data.data.business_details.email;
   const mainid = data.data.product_details.id;
   const imgdiv = document.getElementById('product-info');

@@ -17,6 +17,7 @@
     height: 73px;
     align-self: center;
     margin: 0 auto;
+    cursor: pointer;
 }
 .main-block {
     display: flex;
