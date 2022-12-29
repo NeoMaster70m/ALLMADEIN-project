@@ -21,7 +21,7 @@
 <body>
 <section class="main-header">
     <div class="header">
-        <img class="logo" src="images/logo.jpg">
+        <img class="logo" src="images/logo.jpg" onclick="window.location.href = 'main_page.html'">
         <div class="main-block">
             <div class="dropdown">
                 <button onclick="myFunction()" class="dropbtn"><i style="width: 24px; margin-right: 10px; vertical-align: middle;" class="fa-solid fa-bars"></i>categories</button>
@@ -339,7 +339,7 @@
                 <input class="search-input" id="search" type="text" placeholder="I am looking for..." name="search">
             <!-- </form> -->
             <button class="search-btn" onclick="search()"><i class="fa fa-search"></i></button>
-            <button class="place-ad_btn">place an ad</button>
+            <button class="place-ad_btn" onclick="place_an_ad()">place an ad</button>
             <button class="profile-btn"><i class="fa-regular fa-user"></i></button>
         </div>
     </div>
