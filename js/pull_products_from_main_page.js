@@ -202,8 +202,8 @@ document.getElementById('filter-form').addEventListener('submit', function(event
     }
 
     // Convert minPrice and maxPrice to numbers
-    minPrice = parseInt(minPrice, 10);
-    maxPrice = parseInt(maxPrice, 10);
+    /* minPrice = parseInt(minPrice, 10);
+    maxPrice = parseInt(maxPrice, 10); */
 
     // Filter the products by price
     filteredProducts = products.filter(product => {
