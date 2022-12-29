@@ -30,9 +30,8 @@ async function handleFormSubmit(event) {
     fetch('http://127.0.0.1:8000/registration', options)
         .then(response => response.json())
         .then(data => {
-            if (data) {
-                window.location.href = 'login_page.html';
-            }
+            window.location.href = 'login_page.html';
+            console.log("Success")
         })
         .catch(error => console.error(error));
 }
