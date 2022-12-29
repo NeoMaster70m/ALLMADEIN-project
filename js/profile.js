@@ -9,6 +9,9 @@ fetch('http://127.0.0.1:8000/user/me', {
     .then((data) => {
             if (data) {
                 console.log(data)
+                document.getElementById("profile-photo").src = data.data.logo;
+                button.innerHTML = "Replace";
+                // console.log(data)
                 // Set cookie and redirect to profile page
                 const username = data.data.username;
                 const email = data.data.email;
