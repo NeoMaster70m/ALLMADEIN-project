@@ -159,6 +159,7 @@
   letter-spacing: 0.05em;
   color: #FEFEFE;
   transition: 0.25s;
+  margin-top: 15px;
 }
 
 .delete-btn:hover {
