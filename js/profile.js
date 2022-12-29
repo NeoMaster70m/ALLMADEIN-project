@@ -42,6 +42,8 @@ fetch('http://127.0.0.1:8000/user/me', {
                                 
                                     const productCard = document.createElement('div');
                                     productCard.classList.add('product-card');
+                                    const extendedCard = document.createElement('div');
+                                    productCard.classList.add('extended-card');
                                 
                                     // Add a click event listener to the product card element
                                     productCard.addEventListener('click', function() {
@@ -68,10 +70,25 @@ fetch('http://127.0.0.1:8000/user/me', {
                                     nameElement.classList.add('title');
                                     nameElement.textContent = name;
                                     productInfo.appendChild(nameElement);
+
+                                    const deleteBtn = document.createElement('button');
+                                    deleteBtn.classList.add('delete-btn');
+                                    deleteBtn.textContent = 'DELETE';
+
+                                    deleteBtn.addEventListener('click', function() {
+                                        fetch(`http://127.0.0.1:8000/products/${productId}`, {
+                                            method: 'DELETE',
+                                            headers: {
+                                                Authorization: `Bearer ${sessionStorage.token}`,
+                                            }
+                                        });
+                                    });
                                 
                                     productCard.appendChild(productPicture);
-                                    productCard.appendChild(productInfo);
-                                    container.appendChild(productCard);
+                                    productCard.appendChild(productInfo);  
+                                    extendedCard.appendChild(productCard);
+                                    extendedCard.appendChild(deleteBtn);
+                                    container.appendChild(extendedCard);
                                         })}
                                     //     document.getElementById('verified').innerHTML = verified;
                                     //     document.getElementById('join-date').innerHTML = joinDate;
