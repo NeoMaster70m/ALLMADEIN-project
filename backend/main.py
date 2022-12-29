@@ -200,6 +200,8 @@ async def specific_product(id: int):
     business = await product.business
     owner = await business.owner
     response = await product_pydantic.from_queryset_single(Product.get(id=id))
+    # user = await product_pydantic.from_queryset_single
+    # user = await product_pydantic.from_tortoise_orm(Product.filter(business_id = user_id))
     print(type(response))
     return {"status": "ok",
             "data":
@@ -253,7 +255,7 @@ async def create_upload_file(file: UploadFile = File(...),
 
     # pillow
     img = Image.open(generated_name)
-    img = img.resize(size=(200, 200))
+    img = img.resize(size=(450, 450))
     img.save(generated_name)
 
     file.close()
@@ -296,7 +298,7 @@ async def create_upload_file(id: int, file: UploadFile = File(...),
 
     # pillow
     img = Image.open(generated_name)
-    img = img.resize(size=(200, 200))
+    img = img.resize(size=(450, 450))
     img.save(generated_name)
 
     file.close()

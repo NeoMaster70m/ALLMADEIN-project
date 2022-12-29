@@ -16,7 +16,7 @@ fetch(`http://127.0.0.1:8000/products/${productId}`, {
   document.getElementById('product-price').textContent = '$' + data.data.product_details.original_price;
   document.getElementById('seller-name').textContent = data.data.business_details.name;
   document.getElementById('seller-email').textContent = data.data.business_details.email;
-
+  const mainid = data.data.product_details.id;
   const imgdiv = document.getElementById('product-info');
   const image = imgdiv.querySelector('img');
   // Set the src attribute of the image element
@@ -33,6 +33,7 @@ fetch(`http://127.0.0.1:8000/products/${productId}`, {
   // Check if data.data is an array before iterating over it
   if (Array.isArray(data.data)) {
     data.data.forEach(product => {
+      if (product.id != mainid) {
       const name = product.name;
       const newPrice = product.new_price;
       const productImage = product.product_image;
@@ -69,7 +70,7 @@ fetch(`http://127.0.0.1:8000/products/${productId}`, {
 
       productCard.appendChild(productPicture);
       productCard.appendChild(productInfo);
-      container.appendChild(productCard);
+      container.appendChild(productCard);}
     });
   }
 });
