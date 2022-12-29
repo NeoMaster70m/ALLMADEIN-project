@@ -53,11 +53,12 @@ label.categories-label button {
     cursor: pointer;
     align-items: center;
     margin-bottom: 10px;
+    transition: 0.5s;
 }
 label.categories-label button:hover {
     background: #7BBE5B;
     transition: 0.5s;
-    transform: scale(2);
+    transform: scale(1.25);
 }
 .all-ads {
     width: 1110px;
