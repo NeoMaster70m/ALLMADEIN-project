@@ -108,7 +108,9 @@ async function sendForm(){
                 Authorization: `Bearer ${sessionStorage.token}`,
             },
             body: formData
-        });
+        })
+        .then(response => response.json())
+        .then(data => window.location.href = 'main_page.html');
     } catch (error) {
         console.error(error);
     }
