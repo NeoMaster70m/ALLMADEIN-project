@@ -10,6 +10,7 @@ fetch(`http://127.0.0.1:8000/products/${productId}`, {
 .then(data => {
   const category = data.data.product_details.category
   // Set the text content of the elements
+  document.getElementById('user-photo').src = data.data.business_details.logo; 
   document.getElementById('product-title').textContent = data.data.product_details.name;
   document.getElementById('product-location').textContent = data.data.product_details.location;
   document.getElementById('product-description').textContent = data.data.product_details.description;

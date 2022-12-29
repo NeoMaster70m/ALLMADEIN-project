@@ -212,7 +212,7 @@ async def specific_product(id: int):
                     "city": business.city,
                     "region": business.region,
                     "description": business.business_description,
-                    "logo": business.logo,
+                    "logo": "http://127.0.0.1:8000/static/images/" + business.logo,
                     "owner_id": owner.id,
                     "email": owner.email,
                     "join_date":  owner.join_date.strftime("%b %d %Y")
